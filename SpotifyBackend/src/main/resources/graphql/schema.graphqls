@@ -1,0 +1,52 @@
+type Query {
+    getUser(id: ID!): User
+    getAllUsers: [User]
+
+    getSong(id: ID!): Song
+    getAllSongs: [Song]
+
+    getPlaylist(id: ID!): Playlist
+    getAllPlaylists: [Playlist]
+}
+
+type Mutation {
+    createUser(username: String!, email: String!, password: String!): User
+    createSong(title: String!, artistId: ID!, albumId: ID!, genre: String!, durationInSeconds: Int!): Song
+    createPlaylist(userId: ID!, name: String!): Playlist
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    playlists: [Playlist]
+}
+
+type Song {
+    id: ID!
+    title: String!
+    artist: Artist!
+    album: Album!
+    genre: String!
+    durationInSeconds: Int!
+}
+
+type Playlist {
+    id: ID!
+    name: String!
+    user: User!
+    songs: [Song]
+}
+
+type Artist {
+    id: ID!
+    name: String!
+    albums: [Album]
+}
+
+type Album {
+    id: ID!
+    name: String!
+    artist: Artist!
+    songs: [Song]
+}
